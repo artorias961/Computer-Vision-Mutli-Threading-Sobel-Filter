@@ -178,6 +178,17 @@ Click Ok, twice. Now windows can use CMake commands in Visual Studio Code!
 
 ## Installing and Setting up OpenCV
 
+### Option 1: MSYS2 installation 
+I barely found out about this but try the following command:
+```bash
+pacman -Syu
+pacman -S mingw-w64-x86_64-opencv
+``` 
+
+If you are using option 2 installation and want to switch to option 1. Go to **Edit environment variables for your account** and delete the 3 paths you set for OpenCV for option 2!!!. Just know that it will download the [latest version of OpenCV](https://opencv.org/blog/opencv-4-0/). Read the requirements for CMake minimum requirement!
+
+
+### Option 2: Install OpenCV Manually
 Go to the [OpenCV releases page](https://opencv.org/releases/), select the Windows version, download it, and run the installer.
 ![alt text](picture_reference_readme/image-16.png)
 
@@ -244,6 +255,23 @@ add_executable(OpenCVExample src/main.cpp)
 target_link_libraries(OpenCVExample ${OpenCV_LIBS})
 ```
 
+### CMake troubleshoot: NMake issues
+Open powershell and type in the following:
+```bash
+gcc --version
+g++ --version
+cmake --version
+nmake --version
+```
+
+If you get an error from the first three then its your **Edit environment variables for your account**. If the 4th line is your issue where ever the project is open have the terminal or powershell in that directory. We are going to force some commands:
+```bash
+cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_CXX_COMPILER=g++
+```
+
+If that doesnt work then I recommend installing OpenCV through MSYS2!. 
+
+
 ## Main file
 ```c++
 #include <opencv2/opencv.hpp>
@@ -251,7 +279,7 @@ target_link_libraries(OpenCVExample ${OpenCV_LIBS})
 
 int main() {
     // Load an image (replace with your own file if needed)
-    cv::Mat image = cv::imread("test.jpg");
+    cv::Mat image = cv::imread("pictures/test.jpg");
 
     if (image.empty()) {
         std::cout << "Could not read the image!" << std::endl;
@@ -293,16 +321,34 @@ Restart Visual Studio Code. Restarting your computer is preferred to ensure all 
 
 # How to build and run an enviroment using CMake
 
-## Building an Environment
+## Option 1: MSYS2 OpenCV
+### Building an Environment
+```bash
+cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+cmake --build build
+.\build\OpenCVExample.exe
+```
+
+
+### Delete/rebuild "build" folder
+```bash
+rmdir build -Recurse -Force
+cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+cmake --build build
+.\build\OpenCVExample.exe
+```
+
+
+## Option 2: Maunally installed OpenCV
+### Building an Environment
 ```bash
 mkdir build
-cd build
-cmake ..
-cmake --build . --config Release
+cmake -B .\build\
+cmake --build .\build\ --config Release
 .\Release\OpenCVExample.exe
 ```
 
-## Recommended to rebuild an enviornment for any changes in the code/cmake
+### Option 1: Recommended to rebuild an enviornment for any changes in the code/cmake
 
 ```bash
 cd ..
@@ -313,8 +359,11 @@ then
 
 ```bash
 mkdir build
-cd build
-cmake ..
-cmake --build . --config Release
+cmake -B .\build\
+cmake --build .\build\ --config Release
 .\Release\OpenCVExample.exe
 ```
+
+### Option 2: Delete "build" folder
+
+Delete the build folder, it is quicker.
