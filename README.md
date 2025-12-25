@@ -265,6 +265,32 @@ int main() {
 }
 ```
 
+### Last Recommendation:
+
+If OpenCV shows red error lines in Visual Studio Code but your project compiles fine using CMake, the problem is with VS Code, not OpenCV. VS Code requires the libraries to be linked manually for IntelliSense. This is optional, but doing so enables function previews and better code completion. You can hover over the red underline to view the warning:
+
+![alt text](picture_reference_readme/image-27.png)
+![alt text](picture_reference_readme/image-28.png)
+
+
+Select quick fix where you get the options of:
+![alt text](picture_reference_readme/image-29.png)
+
+Select *Edit "includedPath" settings* where you get the following:
+![alt text](picture_reference_readme/image-30.png)
+
+You only need to focus on two settings: **Compiler Path** and **Include Path**.
+
+- **Compiler Path** points to the GCC compiler location.
+- **Include Path** contains the OpenCV directories.
+
+Your configuration should look similar to the example below:
+
+![alt text](picture_reference_readme/image-31.png)
+
+Restart Visual Studio Code. Restarting your computer is preferred to ensure all changes take effect.
+
+
 # How to build and run an enviroment using CMake
 
 ## Building an Environment
