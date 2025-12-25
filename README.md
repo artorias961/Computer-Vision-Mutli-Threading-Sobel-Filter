@@ -1,23 +1,45 @@
 # Computer Vision Multi Threading Sobel Filter
 
-This project is to validate end-to-end operation of a image and a video, built and run with CMake and OpenCV, including device recognition, frame capture, and the ability to apply basic computer-vision processing (grayscale conversion and 2D [Sobel](https://en.wikipedia.org/wiki/Sobel_operator) edge detection) to captured frames. 
+This project demonstrates a complete workflow using **C++, CMake, and OpenCV** for both images and videos. It covers device recognition, frame capture, grayscale conversion, edge detection, and a **multi-threaded Sobel filter implementation** to improve performance.
 
+## 🧠 Project Overview
+This repository is structured to show incremental development and learning:
 
+1. **Build Verification** – Confirm the C++ / CMake / OpenCV toolchain works correctly.
+2. **Image Processing Pipeline** – Convert images to grayscale and apply basic preprocessing.
+3. **2D Sobel Filter** – Apply Sobel edge detection to static images.
+4. **Video Sobel Filter** – Apply Sobel filtering frame-by-frame on video input.
+5. **Multi-Threaded Sobel Filter** – Improve performance using C++ threading.
 
+You will need:
+
+- **MSYS2** (MinGW64 toolchain)
+- **OpenCV**
+- **CMake**
+- **Visual Studio Code** (optional, recommended)
 
 
 ## Purpose of each Versions
-Each version will contain the CMake file with the src main cpp file.
+Each version includes its own **CMake configuration** and corresponding `main.cpp` source file. The project is structured to demonstrate a gradual progression from basic setup validation to advanced, multi-threaded computer vision processing.
 
-*NOTE: FOR MULTITHREADING ONLY or THREADING IN GENERAL, I am using Windows 11, so I will use [Windows threading](https://learn.microsoft.com/en-us/windows/win32/procthread/processes-and-threads) library but linux threading library is the same. Just using windows since, most students in my school uses Windows:/. You can use [P-thread](https://man7.org/linux/man-pages/man7/pthreads.7.html) just follow the guide!!! Good luck;)*
+*NOTE:* For the multithreading implementations, this project uses the [Windows threading API](https://learn.microsoft.com/en-us/windows/win32/procthread/processes-and-threads) since development was done on **Windows 11** and most students in my program use Windows. The underlying threading concepts are platform-independent. If you are working on Linux, you can substitute the Windows API with [POSIX threads (pthreads)](https://man7.org/linux/man-pages/man7/pthreads.7.html) and follow the same logical structure.
 
 
-- **Version 1**: To test if C++, CMake, and OpenCV works together
-- **Version 2**: To do a simple OpenCV pipeline image conversion (bgr -> grayscale -> threshold)
-- **Version 3**: To do a 2D [Sobel Filter](https://en.wikipedia.org/wiki/Sobel_operator) on a image
-- **Version 4**: To do a 2D [Sobel Filter](https://en.wikipedia.org/wiki/Sobel_operator) on a video/gif
-- **Version 5**: To implement Multithreading Sobel Filter on a image 
-- **Version 6**: To implement Multithreading Sobel Filter on a video 
+### Version Breakdown
+
+- **Version 1** – Validate that **C++, CMake, and OpenCV** are correctly installed and working together.
+- **Version 2** – Implement a basic OpenCV image processing pipeline *(BGR → Grayscale → Threshold)*.
+- **Version 3** – Apply a **2D Sobel filter** to a static image.
+- **Version 4** – Apply a **2D Sobel filter** to video or GIF input.
+- **Version 5** – Implement a **multi-threaded Sobel filter** for image processing.
+- **Version 6** – Implement a **multi-threaded Sobel filter** for video processing.
+
+
+
+
+
+
+
 
 
 
@@ -70,14 +92,14 @@ Computer Vision Multi Threading Sobel Filter:
 
 
 
-# Setting up the environment for OpenCV, GCC Compiler (C++), CMakeList, and Edit environment variables for your account
+# Environment Setup: OpenCV, GCC (C++), CMake, and Visual Studio Code
 
 ## Visual Studio Code
 
-I will be using [Visual Studio Code](https://code.visualstudio.com). You are welcome to use any other Code Editor!
+This project uses [Visual Studio Code](https://code.visualstudio.com) as the primary code editor. You are free to use any editor of your choice, but VS Code is recommended for its extension ecosystem and CMake integration.
 
-### Extensions to install in Visual Studio Code (Recommend)
-I recommend going to the extension tab within Visual Studio Code and install the following:
+### Recommended Extensions
+Open the **Extensions** tab in Visual Studio Code and install the following recommended extensions to improve C++ development, IntelliSense, and debugging support.
 
 ![alt text](picture_reference_readme/image.png)
 ![alt text](picture_reference_readme/image-1.png)
@@ -85,15 +107,15 @@ I recommend going to the extension tab within Visual Studio Code and install the
 
 
 
-## Installing and Setting GCC Compiler
-To install windows 10/11 you need to go to [MSYS2](https://www.msys2.org). Just follow the isntallation processes if not. You can follow mine but I will skip some steps.
+## Installing and Setting Up the GCC Compiler
+To install the GCC compiler on Windows 10/11, download and install [MSYS2](https://www.msys2.org). Follow the standard installation steps. It is recommended to keep the **default installation path**, as it will be referenced later by CMake and environment variables. If you are new to coding:
 
 ![alt text](picture_reference_readme/image-2.png)
 
 Navigate to:
 ![alt text](picture_reference_readme/image-3.png)
 
-Download the file and run it. A windows protection will pop up. Once you are running it, i recommend leaving the default path as since we will reference the directory for CMake:
+Download the installer and run it. Windows security prompts may appear—allow the installation to proceed. It is recommended to keep the default installation path, as this directory will be referenced later by CMake.
 
 ![alt text](picture_reference_readme/image-4.png)
 
@@ -101,7 +123,7 @@ Once installation is done, run MSYS2.
 
 ![alt text](picture_reference_readme/image-5.png)
 
-Lets jsut update the entire compiler, just to give you less headache later on:
+Before continuing, update the entire compiler toolchain to reduce the chance of issues later on.
 ```bash
 pacman -Syu
 ```
@@ -120,18 +142,19 @@ gcc --version
 
 
 
-Now that we have GCC Compiler installed. We need to **Edit environment variables for your account** since we need to call out the directory for windows to find the compiler and use it in Visual Studio Code. So, in windows, open Start, type in **Edit environment variables for your account** and open:
+Now that the GCC compiler is installed, we need to update the **environment variables** so Windows knows where to find the compiler and can use it in Visual Studio Code. Open **Start**, type **Edit environment variables for your account**, and open it.
+
 
 ![alt text](picture_reference_readme/image-7.png)
 
-Yours may look a bit different but should be the same essentially.
+Your window may look slightly different (variables wise), but the layout and options should be essentially the same.
 ![alt text](picture_reference_readme/image-8.png)
 
 Double click variable **Path**
 
 ![alt text](picture_reference_readme/image-9.png)
 
-Select a empty line (assuming you used the default path for MSYS2):
+Select a empty line/cell (assuming you used the default path for MSYS2):
 ![alt text](picture_reference_readme/image-10.png)
 ![alt text](picture_reference_readme/image-11.png)
 
@@ -140,13 +163,13 @@ Click Ok, twice. The second image shows you what the pacman command does. From h
 
 
 ## Installing and Setting CMake
-Go to [CMake](https://cmake.org/download/), select for you system, if you are windows user i recommend selecting **Windows x64 Installer**.
+Go to the [CMake download page](https://cmake.org/download/) and select the installer for your operating system. If you are using Windows, it is recommended to choose the **Windows x64 Installer**.
 ![alt text](picture_reference_readme/image-12.png)
 
-Double click the *.msi* file and again use the default path. It will make your life easier:
+Double-click the `.msi` file and use the default installation path to avoid issues later.
 ![alt text](picture_reference_readme/image-13.png)
 
-Now we need to open **Edit environment variables for your account**, go to **Path**, double click, go to an empty cell and type in the following (if you are using the default path):
+Open **Edit environment variables for your account**, go to **Path**, double-click it, and add the following path in an empty entry (if you used the default install location):
 
 ![alt text](picture_reference_readme/image-14.png)
 ![alt text](picture_reference_readme/image-15.png)
@@ -155,42 +178,48 @@ Click Ok, twice. Now windows can use CMake commands in Visual Studio Code!
 
 ## Installing and Setting up OpenCV
 
-Go to [OpenCV](https://opencv.org/releases/), select Windows and run the file. 
+Go to the [OpenCV releases page](https://opencv.org/releases/), select the Windows version, download it, and run the installer.
 ![alt text](picture_reference_readme/image-16.png)
 
-This will be the only time I recommend changing the directory from (if you are planning to use OpenCV a lot else put it in a local folder):
+This is the only step where changing the installation directory is recommended. If you plan to use OpenCV frequently, choose a global location; otherwise, you may place it in a local folder.
 ![alt text](picture_reference_readme/image-17.png)
 
 To:
 ![alt text](picture_reference_readme/image-18.png)
-This is just easier and so far what worked with most systems I had to installed from scratch. Once extraction is done we need to do a couple of things in order OpenCV can be recgonize by windows and CMake. So first, lets open **Edit environment variables for your account**
+This setup is easier and has worked well on most clean installations. After extraction is complete, a few steps are needed so Windows and CMake can recognize OpenCV. Start by opening **Edit environment variables for your account**.
 
 ![alt text](picture_reference_readme/image-19.png)
 
-Click **New**, for *Variable Name* put *OpenCV_DIR* and for *Variable Value* put *C:\opencv\build*. Yes, spelling does matter!
+Click **New**, enter `OpenCV_DIR` as the variable name, and set the value to `C:\opencv\build`. Make sure the spelling is correct, as this is required for CMake to find OpenCV.
 
 ![alt text](picture_reference_readme/image-20.png)
 
-Select Ok, once. waht the previous image doing is making CMake know how to build the OpenCV library!
+Click **OK** once. This step allows CMake to locate and correctly build against the OpenCV library.
 
 ![alt text](picture_reference_readme/image-21.png)
 ![alt text](picture_reference_readme/image-22.png)
 
 
-In **Edit environment variables for your account**, double click **Path**, add to an empty cell *C:\opencv\build\x64\vc16\bin*, add to another empty cell *C:\opencv\build\x64\vc16\lib*:
+In **Edit environment variables for your account**, double-click **Path** and add the following entries in separate empty fields:
+- `C:\opencv\build\x64\vc16\bin`
+- `C:\opencv\build\x64\vc16\lib`
+
 
 ![alt text](picture_reference_readme/image-23.png)
 ![alt text](picture_reference_readme/image-24.png)
 ![alt text](picture_reference_readme/image-25.png)
 
-Click Ok, twice. Now Visual Studio Code can find the OpenCV libraries!!!
+Click **OK** twice to save the changes. Visual Studio Code should now be able to find the OpenCV libraries.
 
 
 
 # The basics environment build requirements
-Just know, if you encounter any issues when building. Verify the paths for the **Edit environment variables for your account**. Recheck the steps since CMake and OpenCv is a headache to setup. But down below should be the bare minimum to do basic OpenCV. As long, you can compile then you are fine. 
+If you run into build issues, double-check the paths in **Edit environment variables for your account** and review the steps above. CMake and OpenCV can be tricky to set up, and small mistakes in paths can cause big problems.
 
-If you get no errors from CMake or OpenCV is not recgonize. Then congrats! This took me weeks on the job to solve lol. 
+The steps below are the bare minimum needed for basic OpenCV usage. If your code compiles, you’re good to go.
+
+If CMake runs without errors and OpenCV is recognized—congrats! This took me weeks to figure out on the job lol.
+
 
 
 ## CMakeList.txt file
