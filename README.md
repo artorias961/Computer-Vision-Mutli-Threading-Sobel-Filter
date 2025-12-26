@@ -20,7 +20,7 @@ You will need:
 
 
 ## Purpose of each Versions
-Each version includes its own **CMake configuration** and corresponding `main.cpp` source file. The project is structured to demonstrate a gradual progression from basic setup validation to advanced, multi-threaded computer vision processing.
+Each version includes its own **CMake configuration** and corresponding `main.cpp` source file and build. The project is structured to demonstrate a gradual progression from basic setup validation to advanced, multi-threaded computer vision processing.
 
 *NOTE:* For the multithreading implementations, this project uses the [Windows threading API](https://learn.microsoft.com/en-us/windows/win32/procthread/processes-and-threads) since development was done on **Windows 11** and most students in my program use Windows. The underlying threading concepts are platform-independent. If you are working on Linux, you can substitute the Windows API with [POSIX threads (pthreads)](https://man7.org/linux/man-pages/man7/pthreads.7.html) and follow the same logical structure.
 
