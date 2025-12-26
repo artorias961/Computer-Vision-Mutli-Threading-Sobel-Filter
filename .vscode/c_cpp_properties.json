@@ -5,6 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "C:/msys64/mingw64/include/opencv4"
+                // "C:/msys64/mingw64/include/opencv4/opencv2"
             ],
             "defines": [
                 "_DEBUG",

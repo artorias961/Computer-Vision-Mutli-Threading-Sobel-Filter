@@ -1,0 +1,3 @@
+C:/Users/artor/OneDrive/Desktop/Notas/Project/Computer Vision Mutli Threading Sobel Filter/build/CMakeFiles/OpenCVExample.dir
+C:/Users/artor/OneDrive/Desktop/Notas/Project/Computer Vision Mutli Threading Sobel Filter/build/CMakeFiles/edit_cache.dir
+C:/Users/artor/OneDrive/Desktop/Notas/Project/Computer Vision Mutli Threading Sobel Filter/build/CMakeFiles/rebuild_cache.dir

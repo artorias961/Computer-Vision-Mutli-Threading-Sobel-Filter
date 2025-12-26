@@ -185,6 +185,11 @@ pacman -Syu
 pacman -S mingw-w64-x86_64-opencv
 ``` 
 
+Once that has finish installing and to use one of the functions we need from OpenCV (imshow), we need to install another library:
+```bash
+pacman -S mingw-w64-x86_64-qt6-base
+```
+
 If you are using option 2 installation and want to switch to option 1. Go to **Edit environment variables for your account** and delete the 3 paths you set for OpenCV for option 2!!!. Just know that it will download the [latest version of OpenCV](https://opencv.org/blog/opencv-4-0/). Read the requirements for CMake minimum requirement!
 
 
@@ -321,7 +326,7 @@ Restart Visual Studio Code. Restarting your computer is preferred to ensure all 
 
 # How to build and run an enviroment using CMake
 
-## Option 1: MSYS2 OpenCV
+## Option 1: MSYS2 OpenCV (What I use)
 ### Building an Environment
 ```bash
 cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
@@ -337,6 +342,78 @@ cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMP
 cmake --build build
 .\build\OpenCVExample.exe
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Option 2: Maunally installed OpenCV
