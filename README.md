@@ -327,7 +327,14 @@ Restart Visual Studio Code. Restarting your computer is preferred to ensure all 
 # How to build and run an enviroment using CMake
 
 ## Option 1: MSYS2 OpenCV (What I use)
-### Building an Environment
+
+### Run "Compile_and_build.bat" file
+Just type and press enter:
+```bash
+.\Compile_and_build.bat\
+```
+
+### Manually Building an Environment
 ```bash
 cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 cmake --build build
@@ -335,7 +342,7 @@ cmake --build build
 ```
 
 
-### Delete/rebuild "build" folder
+### Manually Delete/rebuild "build" folder
 ```bash
 rmdir build -Recurse -Force
 cmake -S . -B build -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
