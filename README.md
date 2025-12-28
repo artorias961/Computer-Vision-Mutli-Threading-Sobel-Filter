@@ -27,12 +27,12 @@ Each version includes its own **CMake configuration** and corresponding `main.cp
 
 ### Version Breakdown
 
-- **Version 1** – Validate that **C++, CMake, and OpenCV** are correctly installed and working together.
-- **Version 2** – Implement a basic OpenCV image processing pipeline *(BGR → Grayscale → Threshold)*.
-- **Version 3** – Apply a **2D Sobel filter** to a static image.
-- **Version 4** – Apply a **2D Sobel filter** to video or GIF input.
-- **Version 5** – Implement a **multi-threaded Sobel filter** for image processing.
-- **Version 6** – Implement a **multi-threaded Sobel filter** for video processing.
+- **Version 1** – Validate that **C++, CMake, and OpenCV** are correctly installed and working together
+- **Version 2** – Implement a basic OpenCV image processing pipeline *(BGR → Grayscale → Threshold)*
+- **Version 3** – Apply a **2D Sobel filter** to a static image
+- **Version 4** – Apply a **2D Sobel filter** to video or GIF input
+- **Version 5** – Implement a **multi-threaded Sobel filter** for image processing
+- **Version 6** – Implement a **multi-threaded Sobel filter** for video processing
 
 
 
