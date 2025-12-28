@@ -33,7 +33,7 @@ Each version includes its own **CMake configuration** and corresponding `main.cp
 - **Version 4** – Apply a **2D Sobel filter** to video or GIF input
 - **Version 5** – Implement a **multi-threaded Sobel filter** for image processing
 - **Version 6** – Implement a **multi-threaded Sobel filter** for video processing
-
+- **Version 7** - Apply a **3D Sobel filter** to video or GIF input
 
 
 
